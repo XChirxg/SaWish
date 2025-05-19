@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaWish - Relationship Game</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .app-container {
+      max-width: 425px;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #fff;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Header Section */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff6b81;
+    }
+    
+    .currency {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .currency-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    
+    .currency-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .heart-icon {
+      color: #ff6b81;
+    }
+    
+    .coin-icon {
+      color: #ffc107;
+    }
+    
+    /* Top Controls */
+    .top-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      background-color: #fff;
+    }
+    
+    .streak-counter,
+    .edit-btn,
+    .settings-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .streak-counter:hover,
+    .edit-btn:hover,
+    .settings-btn:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .control-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* Main Content Area */
+    .main-content {
+      flex: 1;
+      position: relative;
+      height: calc(100vh - 200px);
+      overflow: hidden;
+      background-image: url('/api/placeholder/425/600');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .character-container {
+      position: absolute;
+      bottom: 70px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+    
+    .character {
+      width: 120px;
+      height: 180px;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+      position: relative;
+    }
+    
+    .character:hover {
+      transform: translateY(-5px);
+    }
+    
+    .character.user::after {
+      content: "You";
+      position: absolute;
+      bottom: -20px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+    
+    .character.partner::after {
+      content: "Partner";
+      position: absolute;
+      bottom: -20px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+    
+    .character.partner,
+    .add-partner {
+      width: 120px;
+      height: 180px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    .add-partner {
+      background-color: rgba(255, 255, 255, 0.3);
+      border: 2px dashed rgba(255, 255, 255, 0.6);
+    }
+    
+    .add-partner-icon {
+      font-size: 36px;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+    
+    .add-partner-text {
+      margin-top: 8px;
+      color: white;
+      font-size: 14px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+    
+    /* Item Display */
+    .item-display {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Bottom Navigation */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 12px 16px;
+      background-color: #fff;
+      border-top: 1px solid #eee;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 8px 16px;
+      border-radius: 6px;
+    }
+    
+    .nav-item:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: #666;
+    }
+    
+    .nav-text {
+      font-size: 12px;
+      color: #666;
+    }
+    
+    .nav-item.active .nav-icon,
+    .nav-item.active .nav-text {
+      color: #ff6b81;
+    }
+    
+    /* Login/Signup Page */
+    .login-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+      gap: 20px;
+    }
+    
+    .login-logo {
+      font-size: 36px;
+      font-weight: bold;
+      color: #ff6b81;
+      margin-bottom: 20px;
+    }
+    
+    .input-group {
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      margin-bottom: 12px;
+      transition: border-color 0.3s;
+    }
+    
+    .input-field:focus {
+      outline: none;
+      border-color: #ff6b81;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: #ff6b81;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #ff5268;
+    }
+    
+    .switch-form {
+      margin-top: 16px;
+      color: #666;
+      cursor: pointer;
+    }
+    
+    .switch-form span {
+      color: #ff6b81;
+      font-weight: bold;
+    }
+    
+    /* Partner Info Page */
+    .partner-info {
+      display: none;
+      flex-direction: column;
+      height: 100vh;
+      background-color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+    }
+    
+    .page-header {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .back-btn {
+      width: 24px;
+      height: 24px;
+      margin-right: 16px;
+      cursor: pointer;
+    }
+    
+    .page-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #f0f0f0;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    
+    .profile-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    
+    .partner-bio {
+      color: #666;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .stats-container {
+      width: 100%;
+      padding: 0 20px;
+    }
+    
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .stat-label {
+      color: #666;
+    }
+    
+    .stat-value {
+      font-weight: bold;
+    }
+    
+    .streak-section {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .streak-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    
+    .streak-progress {
+      height: 8px;
+      background-color: #eee;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    
+    .streak-bar {
+      height: 100%;
+      width: 30%;
+      background-color: #ff6b81;
+      border-radius: 4px;
+    }
+    
+    .streak-info {
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 12px;
+    }
+    
+    .end-relationship {
+      margin-top: auto;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .end-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      background-color: transparent;
+      border: 1px solid #ff3b5c;
+      color: #ff3b5c;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .end-btn:hover {
+      background-color: #ff3b5c;
+      color: white;
+    }
+    
+    /* Dialog */
+    .dialog-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .dialog {
+      background-color: white;
+      border-radius: 12px;
+      padding: 24px;
+      width: 90%;
+      max-width: 320px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .dialog-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    
+    .dialog-content {
+      margin-bottom: 20px;
+    }
+    
+    .dialog-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    
+    .dialog-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .dialog-btn.cancel {
+      background-color: transparent;
+      border: 1px solid #ddd;
+    }
+    
+    .dialog-btn.confirm {
+      background-color: #ff6b81;
+      color: white;
+      border: none;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .animate-fade {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Login/Signup Page -->
+    <div class="login-container">
+      <div class="login-logo">SaWish</div>
+      <div class="input-group">
+        <input type="text" class="input-field" placeholder="Username or Email">
+        <input type="password" class="input-field" placeholder="Password">
+        <button class="btn login-btn">Login</button>
+      </div>
+      <div class="switch-form">
+        Don't have an account? <span>Sign up</span>
+      </div>
+    </div>
+    
+    <!-- Main Dashboard -->
+    <div class="dashboard animate-fade">
+      <!-- Header -->
+      <div class="header">
+        <div class="logo">SaWish</div>
+        <div class="currency">
+          <div class="currency-item" id="hearts-btn">
+            <div class="currency-icon heart-icon">❤️</div>
+            <div class="currency-value">120</div>
+          </div>
+          <div class="currency-item" id="coins-btn">
+            <div class="currency-icon coin-icon">🪙</div>
+            <div class="currency-value">350</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Top Controls -->
+      <div class="top-controls">
+        <div class="streak-counter" id="streak-btn">
+          <div class="control-icon">⭐</div>
+          <div>Streak: 7</div>
+        </div>
+        <div class="edit-btn" id="edit-btn">
+          <div class="control-icon">🖌️</div>
+        </div>
+        <div class="settings-btn" id="settings-btn">
+          <div class="control-icon">⚙️</div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="character-container">
+          <div class="character user" id="user-character">
+            <!-- Character will be drawn here -->
+            👤
+          </div>
+          
+          <!-- If no partner, show add button -->
+          <div class="add-partner" id="add-partner-btn">
+            <div class="add-partner-icon">+</div>
+            <div class="add-partner-text">Add Friend</div>
+          </div>
+          
+          <!-- If partner exists, show partner character (hidden by default) -->
+          <div class="character partner" id="partner-character" style="display: none;">
+            <!-- Partner character will be drawn here -->
+            👤
+          </div>
+        </div>
+        
+        <!-- Item Display (for gifts, vehicles, etc.) -->
+        <div class="item-display" id="item-display">
+          <!-- Items will be shown here -->
+        </div>
+      </div>
+      
+      <!-- Bottom Navigation -->
+      <div class="bottom-nav">
+        <div class="nav-item active" id="game-btn">
+          <div class="nav-icon">🎮</div>
+          <div class="nav-text">Game</div>
+        </div>
+        <div class="nav-item" id="gift-btn">
+          <div class="nav-icon">🎁</div>
+          <div class="nav-text">Gift</div>
+        </div>
+        <div class="nav-item" id="line-btn">
+          <div class="nav-icon">💬</div>
+          <div class="nav-text">Line</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Partner Info Page (hidden by default) -->
+    <div class="partner-info" id="partner-info">
+      <div class="page-header">
+        <div class="back-btn" id="partner-back-btn">←</div>
+        <div class="page-title">Partner Info</div>
+      </div>
+      
+      <div class="profile-section">
+        <div class="profile-pic">
+          <!-- Partner profile pic would go here -->
+        </div>
+        <div class="profile-name">Sarah</div>
+        <div class="partner-bio">Enjoying life one day at a time. Love traveling and photography.</div>
+      </div>
+      
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-label">Zodiac Sign</div>
+          <div class="stat-value">Leo</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Gifted Hearts</div>
+          <div class="stat-value">85</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Game Skill Rating</div>
+          <div class="stat-value">750</div>
+        </div>
+      </div>
+      
+      <div class="streak-section">
+        <div class="streak-title">Streak: 7 days</div>
+        <div class="streak-progress">
+          <div class="streak-bar"></div>
+        </div>
+        <div class="streak-info">
+          <div>Current</div>
+          <div>Next Unlock: 10 days</div>
+        </div>
+      </div>
+      
+      <div class="end-relationship">
+        <button class="end-btn">End Relationship</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Dialog for confirmations -->
+  <div class="dialog-overlay" id="dialog-overlay">
+    <div class="dialog">
+      <div class="dialog-title">Confirm Action</div>
+      <div class="dialog-content">
+        Are you sure you want to proceed with this action?
+      </div>
+      <div class="dialog-actions">
+        <button class="dialog-btn cancel" id="dialog-cancel">Cancel</button>
+        <button class="dialog-btn confirm" id="dialog-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Simple navigation and interaction demo
+    document.addEventListener('DOMContentLoaded', function() {
+      // Login simulation
+      const loginBtn = document.querySelector('.login-btn');
+      const loginContainer = document.querySelector('.login-container');
+      const dashboard = document.querySelector('.dashboard');
+      
+      // Automatically show dashboard in this prototype
+      // In a real app, this would be conditional on login status
+      loginContainer.style.display = 'none';
+      dashboard.style.display = 'block';
+      
+      // Character interaction
+      const userCharacter = document.getElementById('user-character');
+      const partnerBtn = document.getElementById('add-partner-btn');
+      const partnerCharacter = document.getElementById('partner-character');
+      const partnerInfo = document.getElementById('partner-info');
+      const partnerBackBtn = document.getElementById('partner-back-btn');
+      
+      userCharacter.addEventListener('click', function() {
+        // Show user profile (not implemented in prototype)
+        alert('User profile would open here');
+      });
+      
+      partnerBtn.addEventListener('click', function() {
+        // Toggle between add partner and showing partner
+        partnerBtn.style.display = 'none';
+        partnerCharacter.style.display = 'flex';
+      });
+      
+      partnerCharacter.addEventListener('click', function() {
+        partnerInfo.style.display = 'flex';
+      });
+      
+      partnerBackBtn.addEventListener('click', function() {
+        partnerInfo.style.display = 'none';
+      });
+      
+      // Navigation
+      const gameBtn = document.getElementById('game-btn');
+      const giftBtn = document.getElementById('gift-btn');
+      const lineBtn = document.getElementById('line-btn');
+      
+      const navItems = [gameBtn, giftBtn, lineBtn];
+      
+      navItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Remove active class from all
+          navItems.forEach(nav => nav.classList.remove('active'));
+          // Add active class to clicked item
+          this.classList.add('active');
+          
+          // Show alert for navigation (would normally change page/view)
+          const navText = this.querySelector('.nav-text').textContent;
+          alert(`Navigating to ${navText} page`);
+        });
+      });
+      
+      // Settings and currency buttons
+      const settingsBtn = document.getElementById('settings-btn');
+      const heartsBtn = document.getElementById('hearts-btn');
+      const coinsBtn = document.getElementById('coins-btn');
+      const streakBtn = document.getElementById('streak-btn');
+      const editBtn = document.getElementById('edit-btn');
+      
+      settingsBtn.addEventListener('click', function() {
+        alert('Settings page would open here');
+      });
+      
+      heartsBtn.addEventListener('click', function() {
+        alert('Currency Management page would open here');
+      });
+      
+      coinsBtn.addEventListener('click', function() {
+        alert('Currency Management page would open here');
+      });
+      
+      streakBtn.addEventListener('click', function() {
+        alert('Streak information: Send a gift every day to increase your streak!');
+      });
+      
+      editBtn.addEventListener('click', function() {
+        alert('Dashboard Design page would open here');
+      });
+      
+      // End relationship button
+      const endBtn = document.querySelector('.end-btn');
+      const dialogOverlay = document.getElementById('dialog-overlay');
+      const dialogCancel = document.getElementById('dialog-cancel');
+      const dialogConfirm = document.getElementById('dialog-confirm');
+      
+      endBtn.addEventListener('click', function() {
+        dialogOverlay.style.display = 'flex';
+      });
+      
+      dialogCancel.addEventListener('click', function() {
+        dialogOverlay.style.display = 'none';
+      });
+      
+      dialogConfirm.addEventListener('click', function() {
+        dialogOverlay.style.display = 'none';
+        partnerInfo.style.display = 'none';
+        partnerCharacter.style.display = 'none';
+        partnerBtn.style.display = 'flex';
+        alert('Relationship ended');
+      });
+    });
+  </script>
+</body>
+</html>

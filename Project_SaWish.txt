@@ -1,0 +1,130 @@
+Project SaWish
+
+Discription- A game made for forming relationship. Starting from friendly stage to more romintic face of a relationship. its going to be a CrossPlatform game (for Android, IOS and Windows) but in start itll be a Web App Made on React (Runing through firebase freeplan). Game will be developed in parts starting from basic structure to more complex features added later stages also room for easy updates (short comments will be writen there (soon to added features) indicating in future that feature will be added here with all necessary assigned variables without which confusion or error may arise).
+
+Sucess Plan- Game will be made with the help of AI using the Phycologicaly Coginativaly behaviouraly best userinterface and intractions with the app to gain max advantage in the market and make user adicted to game and also form good long lasting relationship with there partner as well.
+
+0. Login/Signup Page
+1. DashBoard
+2. Settings Page
+3. PartnerInfo Page
+4. CurrencyManagement Page
+5. DeshBoardDesigning Page
+6. Game Page
+7. Gift Page
+8. Line Page
+
+Concept of The Game- 
+- So one user will invite or send request through username to another user (possible the person with the possiblity of future relationship). They both will costimise there basic character in start, in start they will have nothing to wear or other accessory they can only be acquired when gifted by partner. IM a cartoon designer so its easy for me to make characters and there cloths that they will wear (it will be in layers or replacing the previous one of that same catagary i will be adding those time to time in app). Gifts can be purchased by partner using coins which can be earned by playing various games. If something is purchased from the Gift page it will be sent to the partner and its value will be recorded in there account with lable Hearts, Hearts can be spent in sending Lines and also claming discount on gift items in actual giftstore website. there will be another thing represented by Start which is the streek of sending gift everyday, within gap from next day anythime to continue streek to 48 hr from the previous sending time(at every stage something will unlock which will be a surprise).
+- There will be a big role of soundeffects. every big thing like purchase, gifting, sending line, wining loosing game, changing cloths, unlocking etc will have a soundeffect.
+- The App will be made for Phone Keepin the phone deminsons in mind. The app should look and feel megical, and with good smooth premium animations and design. 
+------------------------
+
+0. Login/Signup Page
+
+0.1 Basic ask for Login/Signup when user inputs his/her Email/Username and Password if there is already a user with that name send them directly to DashBoard page.
+0.2 If not already user the make a new user in database and ask for DOB and Gender as well. then next will send to 0.3.
+0.3 Here use will coustimise its character according to there gender selected previously, things like skinColour and hairStyle. Then by clicking on save the prefrences will be saved and user willbe sent to 0.4.
+0.4 the game will ask to play as single and start collecting for future partner (the user will be sent to DashBoard page after it) or add partenr with username (if there is a user with that username in database send request to them and send user to dashboard) or send request link, if someone came to the website using that link given by other user directly accept request and after compleating the 0.3 they will be directly sent to DashBoard.
+
+[it will be made using Firebase but because there is limited storage in Free tear the database management should be very memory efficient, so that untill i start earning from it i must be able to maintain a big active userbase]
+
+------------------------
+
+1. DashBoard
+
+TOP: In the left side the Icone of the app will be shown (if not avilable then text "SaWish" willbe writen). In the right side there will be Heart icon with number writen in front of it and Coin icon with number of coins writen in fron of it (clicking on them will send user to Currency Management Page)
+In the Next line there will be three icons, inleft: Star icon with text Streek and Streek number writen in front of it(clicking on it will give a popup window explaining how streek system works in the game), inMiddle: There will be a editCamera Icon clicking on that will send user to the DeshBoardDesigning Page, inRight: there will be a Setting icon that will send user to the setting page.
+
+MIDDLE: In Middle there will be three sections Background, Items and Characters. 
+- Background: in background ther will be a photo of a background of some place like in defalt there will be a park background. but in gifts the partner can gift Trip to places which will update the background to that place for example if Shimla then background will be update to shimla. it can be changed through DeshBoardDesigning Page. 
+- Items: This will be between character and Background , things like some vihical(car, bike, halicopter, spaceship) or wardrobe for cloths (its type will depend on number of cloths) or smaller gifts like flowers (its type depens on number), or bookshelf (its type depends on the number of books recived as gifts). it can be changed or removed through DeshBoardDesigning Page.
+- Characters: [Situation1(The person has not added the partner)] There will be only one character, which is the user's character and in place of other character (partner) there will be a big plus button with a text under is Add Friend. by clicking on that user will be send to 3.5 PartnersRequest Page [Situation2(The person has added a partner)] There will be two characters Boy and Girl standing, they will be designed in the signup stage previously or later through DeshBoardDesigning Page. In start they will be wearing very simple and cheap cloths but later it will be gifted by partner and the options will start to appire in DeshBoardClothDesigning there will be pngs or vector images for head wairables, eye glasses, shirts, coats, bottoms, shoose, neck accassery, watches and other arm wairables. Also there will be unique face exprations which will change as per situations for example in defalt it will be normal, when that character(user) recives a gift it turns to happy if both exchanges gifts both becomes happy, if someone breaks the streek the other person exprations turns to angry with the text of reason for anger and way to make them happy againg (which is by gifiting something). by clicking on any character the user will be sent to 3. PartnerInfo Page
+
+BOUTTOM: In buttom there willbe three icons inLeft: Game, inMiddle: Gift and inRight: Line. clicking on them will send user to there desired pages.
+
+
+if user has already logind bedore the user will directly land on the deshbord, and refresh will not logout the user.
+
+------------------------
+
+2. Settings Page
+
+It will include options like edit username, edit bio, option to add insta id or phonenumber which will only be shown to partner after 30 days of streek. SoundEffect and Music Volume with a slider to adjust. it will include button to install this app to phone(its a react app so it can be done). About game under it writen  Developed by Chinurag and clicking on it will send user to my website.send feedbak which will send user to @chinurag instgram account, Also a logout button.
+
+------------------------
+
+3. PartnerInfo Page
+
+This will include the there current character with white background in a circle like profile Partners name, there bio, Zedoic Sign, Gifted Hearts, Achivements/Ilo rating in various types of games(Luck, Skill and Knowledge),  Streek level with them which will unlock things in various stages like [in 10 day streek the user will unlock there partner's personality discription which will depend on there Zedoic sign and Achivement in the type of game and the ratio of number of coins they have and the value of gifts they have given, there will be a a line for each range of situation which will tell alot abot other persons personality][in 20 day streek the user will unlock there partner's and there discription of relation depending on all the above things mentioned.][in 30 day streek achivemet it will be dinoted by Surprise, after unlocking it it will show various options like partners insta, and  phonenumber or plan to meet somewere outside or talk on phone.][1year/365 day streek will give both user 25% dicount on any item under rupee 500 from the store or a gift recomendation][after 1 year streek will not end in the duration of month user have to comeback onece in 30 days to gift and to keep the streek].
+
+Then in end there will be a small fadded button in end saying End it (there will be warings that it will deleate all the progress also there will be a 200 sec countdoun before the option to proceed becomes enabled) after click proceed the end button transform into higlited bold reconnect again with 7 days timer (the streek will pause in that time and recontinue when reconnected again) and after that if not reconnected there connection will end and the page will transform into partners request page.
+
+3.5 PartnersRequest Page: it will include invite a friend to play together (which will share a link), a search bar which will search user from the database and other users of opposit gender in userbase that dont have any partners and requests from other users (if they found a partner there request will be deleated automaticly) also rank them as per age Similarity.
+
+
+------------------------
+
+4. CurrencyManagement Page
+
+So there are 2 currencies in the game Coins, Hearts. there will be 4 cards in the page. 
+[CoinsCard, it will show the icon of coins and number of coins and a big plus button to purchase coins for rupee 1000 coins for 100rupee, 10k for 1000 and 100k for 10krupee.] 
+[HeartCard, it will show the icon of hearts (value of gifts recived by partner) and number of Hearts and a button share and earn for every share the user will earn 10 heart (but the button can be pressed once in 2min) and when the the person who the user shared the link finds a partner then user earns 100hearts and a notification that his friend found a partner but the found partner should not be the person sending the link. also add a button to spend heart in store with info under 1k item 5% discount code will be generated for 5kHearts, from 1k to 5k item 10% discount code will be generated for 7kHearts, over 10k item 5% discount code will be generated for 10kHearts the code can be generated and applied in the different website which is the store for gifts(in future ill earn from affilate marketing from that website in future)write the test purchase physical gift for loved one from the hearts they gifted also apply the discount
+[Streek card it will show the star icon and the streek number]
+[Achivement card it will show trophy icon and the user's own ilo in various types of games]
+Also there will be an about stction in end which will include the discription about name of the game (SaWish See a Wish coming true and add few more lines to it making it genuan emotinaly connected and real) and the various advantages of game in stages of relationship and its need in todays time and also the learnig through game side of it. and in the end about developer Chinurag
+
+------------------------
+
+5. DeshBoardDesigning Page
+
+this will design the deash board it will include pngs/vector images in buttom menu of various 
+[Catagory1:(Character) skincolour, haircolor, head wairables, eye glasses, shirts, coats, bottoms, shoose, neck accassery, watches and other arm wairables which are gifted by partners (it will automaticly appire there)]
+[Catagory2:(items)CheapGifts(dont write them that in game use some fancy word), MiddleGifts, Vehicles; chenge there appirence as per there number of gifts like first there will be one flower if the flower is gifted again and again up up to 10 then it will be shown in deshbord like a bookey then after 50 flowers it will be shown like a flowerpot in the loby or for example do smae for book and bookshelf in different levels and for cloths make a warddrow , keep the higher things like flowerport, bookshelf and warddrow locked which will be clicked to unlock when enough is collect and it will unloack with a good soundeffect and gif animations; only one thing/item from this section can appire in the deshboard and it will be shown on the character of user'side]
+[Catagory3:(Background) Different background of different locations it can be selected from the gifted options (its like going to plces together)]  
+
+------------------------
+
+6. Game Page
+
+This will Include three types of games Luck Base, Skill Based, Knowledge Based
+
+- Luck Based: games like (Dice Roll: Choose number first then role thrice if total that number=select number then win else loose, Stone paper seasor shree rounds with computer other games will be added later) user have to invest 50% of reward amt before playing if lost user will loose the money and if won he will get the whole reward. The Rating will Increase and decrease as per wins on ilo ratibg system. Coin amt will set by the user on a slider in luck based games.
+- Skill based: games like (Suduko: coins will increase as per heardness level and keep on substrating with the passage of time if user goes below 50% of the reward amt user will loose the game similar for crossword other games will be added soon) user have to invest 25% of reward amt before playing if lost user will loose the money and if won he will get the whole reward. 100 coins for easy 150 for medium and 200 for hard, in 10min time.
+- knowledge based: games like (World History Quiz, World Geography Quiz, Commerce Quiz, Science Quiz, Physics Quiz And all other types of quiz fromacadamics subjects and Math Problems with single solution will ahve highest coins 30 coins for solving each problem correctly) The fee to play will be free but every game can be played only to the point untill all sets of 10 questions are compleated after that that game will be disabled of the user untill new question list is updated in it which that user have not already solved, also there will be only 10 questions in the set starting from the easiest to hardest , to win the user have to score at least 50% to increase elo rating, every correct question will give a number of coin  and every wrong will minus ,  for every correct answer in quiz 15 for every wrong -3 , for scoring more then 50% there will be a bonus of 30 Coins for more then 70% bonus of 50 coins for 90% correct the bonus will be 70 coins and for 100% bonus will be 100coins.
+
+
+
+------------------------
+
+7. Gift Page
+
+Gifts section will include two types of gifts Casual Gifts and Romentic Gifts. each will have 6 catagories in it.
+in Casual gift make catagory of Watches and Arm acassaries, Normal cloths, Glasses and other whatever you think fits(and price them cheaper as compare to romentic gifts)
+in Romentic gifts like flowers, Cool Expencive Cloths, animals (item catagory), neckaccassaries, Vehicles and other whatever you think fits.
+- when clicked on any catagory a list of all the different types should be there inside it like types of different flowers, types of different vehicles (in case of items catagory gifts and Background Catagory gifts there will be actual image of it not the cartoon one which will be blurd before purchase but the name and price will appire under it)
+
+------------------------
+
+8. Line Page
+
+line page is like a chating app but in it thay will not chat they will send each other pre writen lines which they have to purchase by spending hearts, there will be two catagaries of lines to choose from Casual lines (10 hearts to buy and send) and Romentic lines (20 hearts to buy and send) and the other person can react through emoji for free.
+
+-Casual lines will include Facts lines, and other normal lines that does not requires any reply but can be sent to get reaction also they can communicate in lines if you are ____ then react with ____ .
+-Romentic lines will include fluriting lines and other romentic lines.
+ 
+The interface of the page will be similar to a chating app but in place of Input text bar there will be Select Normal Line button , Select Romentic Line button and a Choose emoji button. when clicked on button it opens a big list of all the lines that can be sent but all of them blured an can be unlocked by spending 5 hearts for romentic and 3 hearts for casual, the line will be writen in a card whith send button in buttom (when clicked on send it will give a sound effect and gif depending on the type of line casual or romentic) once unlocked the unlocked lines will go to unlocked catagary. also i must be able to add new lines in the future in the code.
+
+------------------------
+
+
+Nevigation There should be a Back button in the topleft corner of ( 2. Settings Page 3. PartnerInfo Page 4. CurrencyManagement Page 5. DeshBoardDesigning Page 6. Game Page 7. Gift Page 8. Line Page ) also in deshbord the user should be in fullscreen mode(f11).
+
+Asign Each line and Gift a number so that it can be saved in database without taking too much space, and try to reduce space used less and less. 
+
+_____________________________________________
+
+
+
+
+
