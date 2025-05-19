@@ -115,12 +115,13 @@ line page is like a chating app but in it thay will not chat they will send each
  
 The interface of the page will be similar to a chating app but in place of Input text bar there will be Select Normal Line button , Select Romentic Line button and a Choose emoji button. when clicked on button it opens a big list of all the lines that can be sent but all of them blured an can be unlocked by spending 5 hearts for romentic and 3 hearts for casual, the line will be writen in a card whith send button in buttom (when clicked on send it will give a sound effect and gif depending on the type of line casual or romentic) once unlocked the unlocked lines will go to unlocked catagary. also i must be able to add new lines in the future in the code.
 
+keep the chats in cashe memory there is no need to save it in database ... keep deleating the 7 day old chats from cashe as well
 ------------------------
 
 
 Nevigation There should be a Back button in the topleft corner of ( 2. Settings Page 3. PartnerInfo Page 4. CurrencyManagement Page 5. DeshBoardDesigning Page 6. Game Page 7. Gift Page 8. Line Page ) also in deshbord the user should be in fullscreen mode(f11).
 
-Asign Each line and Gift a number so that it can be saved in database without taking too much space, and try to reduce space used less and less. 
+Asign Each line and Gift a number so that it can be saved in database without taking too much space, and try to reduce space used less and less. i dont want you to use firebase storage because its not free uses firestore database insitd
 
 _____________________________________________
 

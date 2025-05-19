@@ -1,0 +1,206 @@
+SaWish Project Structure
+Project Overview
+SaWish is a relationship-building game platform with features for partners to exchange gifts, play games, and build streak-based interactions.
+
+File Structure
+sawish/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── manifest.json
+│   └── assets/
+│       ├── sounds/
+│       ├── images/
+│       │   ├── backgrounds/
+│       │   ├── characters/
+│       │   │   ├── base/
+│       │   │   ├── clothing/
+│       │   │   └── accessories/
+│       │   ├── gifts/
+│       │   ├── icons/
+│       │   └── ui/
+│       └── animations/
+├── src/
+│   ├── index.js                    # Entry point
+│   ├── App.js                      # Main app component
+│   ├── firebase.js                 # Firebase configuration
+│   ├── components/
+│   │   ├── auth/
+│   │   │   ├── Login.js            # Login component
+│   │   │   ├── Signup.js           # Signup component
+│   │   │   └── CharacterCreation.js # Character customization
+│   │   ├── dashboard/
+│   │   │   ├── Dashboard.js        # Main dashboard
+│   │   │   ├── TopBar.js           # Top navigation
+│   │   │   ├── Background.js       # Background display
+│   │   │   ├── Items.js            # Items display
+│   │   │   └── Characters.js       # Characters display
+│   │   ├── partner/
+│   │   │   ├── PartnerInfo.js      # Partner profile
+│   │   │   └── PartnerRequest.js   # Partner request page
+│   │   ├── settings/
+│   │   │   └── Settings.js         # Settings page
+│   │   ├── currency/
+│   │   │   └── CurrencyManagement.js # Currency management
+│   │   ├── design/
+│   │   │   └── DashboardDesigning.js # Dashboard customization
+│   │   ├── games/
+│   │   │   ├── GamePage.js         # Game main page
+│   │   │   ├── luck/
+│   │   │   │   ├── DiceRoll.js     # Dice game
+│   │   │   │   └── RockPaperScissors.js # RPS game
+│   │   │   ├── skill/
+│   │   │   │   └── Sudoku.js       # Sudoku game
+│   │   │   └── knowledge/
+│   │   │       └── Quiz.js         # Quiz framework
+│   │   ├── gift/
+│   │   │   ├── GiftPage.js         # Gift main page
+│   │   │   ├── CasualGifts.js      # Casual gifts
+│   │   │   └── RomanticGifts.js    # Romantic gifts
+│   │   ├── line/
+│   │   │   ├── LinePage.js         # Line main page
+│   │   │   ├── CasualLines.js      # Casual lines
+│   │   │   └── RomanticLines.js    # Romantic lines
+│   │   └── common/
+│   │       ├── BackButton.js       # Back navigation button
+│   │       ├── CurrencyDisplay.js  # Currency display component
+│   │       └── Notification.js     # Notification component
+│   ├── contexts/
+│   │   ├── AuthContext.js          # Authentication context
+│   │   ├── UserContext.js          # User data context
+│   │   └── PartnerContext.js       # Partner data context
+│   ├── hooks/
+│   │   ├── useStreaks.js           # Custom hook for streak tracking
+│   │   ├── useSound.js             # Sound effects hook
+│   │   └── useGifts.js             # Gift management hook
+│   ├── pages/
+│   │   ├── LoginPage.js            # Login/Signup page
+│   │   ├── DashboardPage.js        # Dashboard page
+│   │   ├── SettingsPage.js         # Settings page
+│   │   ├── PartnerInfoPage.js      # Partner profile page
+│   │   ├── CurrencyPage.js         # Currency management page
+│   │   ├── DesignPage.js           # Dashboard design page
+│   │   ├── GamePage.js             # Games page
+│   │   ├── GiftPage.js             # Gift selection page
+│   │   └── LinePage.js             # Line exchange page
+│   ├── services/
+│   │   ├── auth.js                 # Authentication services
+│   │   ├── database.js             # Database operations
+│   │   ├── storage.js              # Storage operations
+│   │   └── analytics.js            # Analytics tracking
+│   ├── utils/
+│   │   ├── constants.js            # App constants
+│   │   ├── helpers.js              # Helper functions
+│   │   └── validators.js           # Input validation
+│   └── styles/
+│       ├── global.css              # Global styles
+│       ├── components/             # Component-specific styles
+│       └── themes/                 # Theme configurations
+└── package.json                    # Project dependencies
+Setup Commands
+bash
+# Create React App and install dependencies
+npx create-react-app sawish
+cd sawish
+
+# Install required libraries
+npm install firebase react-router-dom @mui/material @emotion/react @emotion/styled @mui/icons-material react-firebase-hooks framer-motion howler
+
+# Install development dependencies
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+# Create project structure
+mkdir -p public/assets/{sounds,images/{backgrounds,characters/{base,clothing,accessories},gifts,icons,ui},animations}
+mkdir -p src/{components/{auth,dashboard,partner,settings,currency,design,games/{luck,skill,knowledge},gift,line,common},contexts,hooks,pages,services,utils,styles/{components,themes}}
+
+# Create base files
+touch src/firebase.js
+touch src/contexts/{AuthContext.js,UserContext.js,PartnerContext.js}
+touch src/hooks/{useStreaks.js,useSound.js,useGifts.js}
+touch src/services/{auth.js,database.js,storage.js,analytics.js}
+touch src/utils/{constants.js,helpers.js,validators.js}
+touch src/styles/global.css
+
+# Start development server
+npm start
+Firebase Setup
+Create a Firebase project at https://console.firebase.google.com/
+Enable Authentication (Email/Password)
+Set up Firestore Database
+Set up Storage
+Get your Firebase configuration and add it to src/firebase.js
+Database Structure
+users/
+  ├── userId/
+  │   ├── profile
+  │   │   ├── username
+  │   │   ├── dob
+  │   │   ├── gender
+  │   │   ├── bio
+  │   │   ├── zodiacSign
+  │   │   ├── instagramId
+  │   │   ├── phoneNumber
+  │   │   └── createdAt
+  │   ├── character
+  │   │   ├── skinColor
+  │   │   ├── hairStyle
+  │   │   ├── hairColor
+  │   │   └── accessories
+  │   ├── currency
+  │   │   ├── coins
+  │   │   └── hearts
+  │   ├── achievements
+  │   │   ├── luck
+  │   │   ├── skill
+  │   │   └── knowledge
+  │   ├── partner
+  │   │   ├── partnerId
+  │   │   ├── streakCount
+  │   │   ├── streakLastUpdated
+  │   │   ├── streakLevel
+  │   │   └── heartsReceived
+  │   ├── dashboard
+  │   │   ├── background
+  │   │   └── items
+  │   ├── unlockedLines
+  │   │   ├── casual
+  │   │   └── romantic
+  │   └── unlockedGifts
+  │       ├── casual
+  │       └── romantic
+  └── partnerId/
+      └── ...
+
+conversations/
+  ├── conversationId/
+  │   ├── participants
+  │   │   ├── user1Id
+  │   │   └── user2Id
+  │   └── lines
+  │       ├── lineId
+  │       │   ├── senderId
+  │       │   ├── lineType
+  │       │   ├── lineId
+  │       │   ├── sentAt
+  │       │   └── reaction
+  │       └── ...
+
+gifts/
+  ├── giftId/
+  │   ├── senderId
+  │   ├── receiverId
+  │   ├── giftType
+  │   ├── giftId
+  │   ├── value
+  │   └── sentAt
+  └── ...
+
+partnerRequests/
+  ├── requestId/
+  │   ├── senderId
+  │   ├── receiverId
+  │   ├── status
+  │   ├── createdAt
+  │   └── expiresAt
+  └── ...
