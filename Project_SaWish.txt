@@ -1,4 +1,4 @@
-Project SaWish
+Project Ambar
 
 Discription- A game made for forming relationship. Starting from friendly stage to more romintic face of a relationship. its going to be a CrossPlatform game (for Android, IOS and Windows) but in start itll be a Web App Made on React (Runing through firebase freeplan). Game will be developed in parts starting from basic structure to more complex features added later stages also room for easy updates (short comments will be writen there (soon to added features) indicating in future that feature will be added here with all necessary assigned variables without which confusion or error may arise).
 
@@ -34,12 +34,12 @@ Concept of The Game-
 1. DashBoard
 
 TOP: In the left side the Icone of the app will be shown (if not avilable then text "SaWish" willbe writen). In the right side there will be Heart icon with number writen in front of it and Coin icon with number of coins writen in fron of it (clicking on them will send user to Currency Management Page)
-In the Next line there will be three icons, inleft: Star icon with text Streek and Streek number writen in front of it(clicking on it will give a popup window explaining how streek system works in the game), inMiddle: There will be a editCamera Icon clicking on that will send user to the DeshBoardDesigning Page, inRight: there will be a Setting icon that will send user to the setting page.
+In the Next line there will be three icons, inleft: Star icon with text Streek and Streek number writen in front of it(clicking on it will give a popup window explaining how streek system works in the game), inMiddle: There will be a editCamera Icon clicking on that will capture the photo of both users with streek number and the edited dashboard and save that directly to gallary, inRight: there will be a Setting icon that will send user to the setting page.
 
 MIDDLE: In Middle there will be three sections Background, Items and Characters. 
 - Background: in background ther will be a photo of a background of some place like in defalt there will be a park background. but in gifts the partner can gift Trip to places which will update the background to that place for example if Shimla then background will be update to shimla. it can be changed through DeshBoardDesigning Page. 
 - Items: This will be between character and Background , things like some vihical(car, bike, halicopter, spaceship) or wardrobe for cloths (its type will depend on number of cloths) or smaller gifts like flowers (its type depens on number), or bookshelf (its type depends on the number of books recived as gifts). it can be changed or removed through DeshBoardDesigning Page.
-- Characters: [Situation1(The person has not added the partner)] There will be only one character, which is the user's character and in place of other character (partner) there will be a big plus button with a text under is Add Friend. by clicking on that user will be send to 3.5 PartnersRequest Page [Situation2(The person has added a partner)] There will be two characters Boy and Girl standing, they will be designed in the signup stage previously or later through DeshBoardDesigning Page. In start they will be wearing very simple and cheap cloths but later it will be gifted by partner and the options will start to appire in DeshBoardClothDesigning there will be pngs or vector images for head wairables, eye glasses, shirts, coats, bottoms, shoose, neck accassery, watches and other arm wairables. Also there will be unique face exprations which will change as per situations for example in defalt it will be normal, when that character(user) recives a gift it turns to happy if both exchanges gifts both becomes happy, if someone breaks the streek the other person exprations turns to angry with the text of reason for anger and way to make them happy againg (which is by gifiting something). by clicking on any character the user will be sent to 3. PartnerInfo Page
+- Characters: [Situation1(The person has not added the partner)] There will be only one character, which is the user's character and in place of other character (partner) there will be a big plus button with a text under is Add Friend. by clicking on that user will be send to 3.5 PartnersRequest Page [Situation2(The person has added a partner)] There will be two characters Boy and Girl standing, they will be designed in the signup stage previously or later through DeshBoardDesigning Page. In start they will be wearing very simple and cheap cloths but later it will be gifted by partner and the options will start to appire in DeshBoardClothDesigning there will be   vector images for wairables, by clicking on own character the user will be sent to Character Custimisation Page, by clicking on partners character the user will be sent to 3. PartnerInfo Page...
 
 BOUTTOM: In buttom there willbe three icons inLeft: Game, inMiddle: Gift and inRight: Line. clicking on them will send user to there desired pages.
 
@@ -126,6 +126,76 @@ Asign Each line and Gift a number so that it can be saved in database without ta
 _____________________________________________
 
 
+Design and Colour 
+
+Colours: AC4E8D, D97F86, F1AF7B, E9D183, 2BA495, 71504E
+
+i want the vibe to be peaceful. Itll have cartoon characters so a little bit cartoonsh design will work well... use this font Cal Sans ... will icon with colour (i like plan icon)...
 
 
 
+Illbe using SVG file and illbe making in layers so the exect code of the cloth/item/Background should be entered in the code. 
+
+
+
+BoyBody
+Layer Name, Colour Variable
+
+BaseBody, fill:var(--skin-color)
+EyesExtreme
+MouthHappyTeeth
+MouthSmile
+MouthSad
+EyebrowAngry
+EyebrowPity
+EyebrowNormal
+BodyOutline
+BottomUnderwear, fill:var(--bottom-color)
+UpperSweatShirt, fill:var(--upper-color)
+HairPointy, fill:var(--hair-color)
+HairCurly, fill:var(--hair-color)
+HairSimple, fill:var(--hair-color)
+HairTopBald, fill:var(--hair-color)
+EyesNormal
+EyesHalfOpen
+__________________
+
+GirlBody
+
+HairBackPonyTail, fill:var(--hair-color)
+MouthHappyTeeth
+MouthSmile
+MouthSad
+EyebrowNormal
+EyebrowAngry
+EyebrowPity
+HairFrontOnFace, fill:var(--hair-color)
+HairFrontBangs, fill:var(--hair-color)
+HairFrontNormal, fill:var(--hair-color)
+BodyOutline
+HairBackShort, fill:var(--hair-color)
+HairBackLong, fill:var(--hair-color)
+BaseBody
+BottomPajamas, fill:var(--bottom-color)
+UpperSweatShirt, fill:var(--upper-color)
+EyesNormal
+EyesHalfOpen
+EyesExtreme
+
+Example code -------
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080px" height="1920px" viewBox="60 -10 1080 1920">
+<g id="BaseBody" style="">
+<g style="fill:var(--skin-color); fill-opacity:1.0; stroke-linejoin: miter">
+<path d="M689.6895,2222.2L696.99646,2210.2434L704.30347,2198.2869L689.6895,2222.2"/>
+</g>...
+
+GirlBody
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080px" height="1920px" viewBox="60 -10 1080 1920">
+<g id="HairBackPonyTail" class="" style="">
+<g style="fill:var(--hair-color); fill-opacity: 1; stroke-linejoin: miter;" class="">
+<path d="M818.72925,909.27875L813.6777,912.7112Q788.3163,929.79956,769.4038,941.95856Q766.9083,955.4149,775.7629,970.77985Q807.7562,1022.67017,857.7794,993.7577Q866.40283,986.6787,869.19183,981.4135Q844.0729,986.7973,835.2242,972.30994Q832.8702,969.2322,831.229,962.1012Q829.4581,931.4519,826.87317,922.37823Q824.67975,914.77295,818.72925,909.27875 Z"/>
+</g>...
+
+
+. Boy and girl images/svg should be combined like layers stacked they will look like they are stending todether that ....give option to edit boy and girl sapratly ... Make changing Body Color through BaseBody(add famous body colour in options [i have not added multipal colours you have to change it through code, ill paste svg code in the code you give]), show all the hairstyles and different colour varients of it (keep the colours famous one){for girl there is Hair front and hair back you can combine them to make alot of different varations and show both as one option }, i have added an Upper but i have intention to add more in future [change its colour to show varations], Bottom will also be added for now use with different varations... dont mixup boy and girl cloth catagaries if you are editing girl then only girl's cloths and other options shouls appire... also i have added various fave exprations keep change them every 5 sec automaticly rendomly (just keep in mind you can make combinations of only one from Eyebrow, Eyes and Mouth at one time)
